@@ -16,7 +16,7 @@ cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $DOWNLOAD_URL -o bento4.zip
-unzip bento4.zip
+unzip -qq bento4.zip
 mv Bento4* bento
 
 if [ -d "bento4" ]; then
