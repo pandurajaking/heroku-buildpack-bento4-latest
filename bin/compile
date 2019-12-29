@@ -20,7 +20,7 @@ unzip bento4.zip
 mv Bento4* bento
 
 if [ -d "bento4" ]; then
-	rm -rf bento4
+    rm -rf bento4
 fi
 mv bento/bin bento4
 
@@ -31,6 +31,6 @@ echo 'export PATH="$PATH:${HOME}/vendor/bento4"' > $PROFILE_PATH
 
 echo "-----> Cleaning Up"
 echo "removing extra files" | indent
-rm bento
+rm -rf bento
 echo "removing downloaded archive" | ident
 rm bento4.zip
