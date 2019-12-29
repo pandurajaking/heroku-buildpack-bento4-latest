@@ -32,5 +32,5 @@ echo 'export PATH="$PATH:${HOME}/vendor/bento4"' > $PROFILE_PATH
 echo "-----> Cleaning Up"
 echo "removing extra files" | indent
 rm -rf bento
-echo "removing downloaded archive" | ident
+echo "removing downloaded archive" | indent
 rm bento4.zip
