@@ -17,10 +17,20 @@ mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $DOWNLOAD_URL -o bento4.zip
 unzip bento4.zip
-mv Bento4* bento4
-rm bento4.zip
+mv Bento4* bento
+
+if [ -d "bento4" ]; then
+	rm -rf bento4
+fi
+mv bento/bin bento4
 
 echo "exporting PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/bento4.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:${HOME}/vendor/bento4/bin"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:${HOME}/vendor/bento4"' > $PROFILE_PATH
+
+echo "-----> Cleaning Up"
+echo "removing extra files" | indent
+rm bento
+echo "removing downloaded archive" | ident
+rm bento4.zip
