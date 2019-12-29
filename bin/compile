@@ -1,0 +1,26 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Install bento4"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+WEBPAGE_URL="https://www.bento4.com/downloads/"
+DOWNLOAD_URL=$(curl -L $WEBPAGE_URL | grep -o "http:\/\/.*linux\.zip")
+
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+curl -L --silent $DOWNLOAD_URL -o bento4.zip
+unzip bento4.zip
+mv Bento4* bento4
+rm bento4.zip
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/bento4.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:${HOME}/vendor/bento4/bin"' >> $PROFILE_PATH
